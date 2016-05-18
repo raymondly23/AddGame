@@ -1,81 +1,92 @@
 $(document).ready(init);
-
-var numTrack = 0;
-var reroller = 3;
-var winDetect = 0;
+	var numTrack = 0;
+	var reroller = 3;
 
 function init(){
-$('#start').click(randomInvs);
-$('#restart').on('click',restart);
-$('#submit').click(submitter);
-$('#reroll').click(reroll);
-$('.circle').on('click', $(this), highlight);
+	$('#start').click(start);
+}
+
+function restart() {	
+	$('.space-invader').remove('.space-invader');
+	$('.highlight').removeClass('highlight');
+	$('.dead').removeClass('dead');
+	reroller = 3;
+	$('#rerollCount').text('Rerolls: '+ reroller)
+	numTrack = 0;
+	$(this).remove()
+	$('#submit').remove()
+	$('#reroll').remove()
+	$('#buttons').prepend("<button id='start' class='btn'>Start</button>")
+	$('#start').click(start);
+}
+
+function start(){
+	$('.circle').click(highlight);
+	randomInvs()
+	$('#rerollCount').text('Rerolls: '+ reroller);
+	$(this).remove();
+	$('#buttons').append("	<button id='restart' class='btn'>Restart</button>")
+	$('#restart').click(restart);
+	$('#buttons').append("	<button id='submit' class='btn'>Submit</button>")
+	$('#submit').click(submitter);
+	$('#buttons').append("	<button id='reroll' class='btn'>Reroll</button>")
+	$('#reroll').click(reroll);
+}
+
+function randomInvs(){
+	numTrack = Math.ceil(Math.random() * 9)
+	for(i = 0; i < numTrack; i++){
+		$('#invaderContainer').append('<div class="space-invader"></div>');
+	}
 }
 
 function reroll(){
-	reroller--;
-	if(reroller >= 0){
-	$('.space-invader').remove('.space-invader');
-	randomInvs();
+	if(reroller > 0){
+		reroller--
+		$('#rerollCount').text('Rerolls: '+ reroller)
+		$('.space-invader').remove('.space-invader');
+		randomInvs();
 	}
+
 	if(reroller === 0){
-	$('#reroll').addClass('dead');
+		$('#reroll').addClass('dead');
 	}
 }
-function randomInvs(){
-	$('#rr').text('Rerolls:'+reroller);
-	var randomNum = Math.ceil(Math.random()*9);
-	numTrack = randomNum;
-	for(i=0;i<randomNum;i++){
-	$('#invaderContainer').append('<div class="space-invader"></div>');
-	$(this).remove();
-	}
-}
+
 
 function highlight() {
 	event.stopPropagation();
 	$(this).toggleClass('highlight');
 }
 
-function restart(){
-	$('#start').remove();
-	$('.space-invader').remove('.space-invader');
-	$('.highlight').removeClass('highlight');
-	$('div').removeClass('dead');
-	$('#reroll').removeClass('dead');
-	reroller = 3;
-	numTrack = 0;
-	winDetect = 0;
-}
 
-function submitter(){
-	var highNum = 0;
+function submitter() {
+	var highlightNum = 0;
 	var $highlight = $('.highlight');
-	var numbas = $highlight.text().split('');
-	for(i=0;i<numbas.length;i++){
-		highNum += parseInt(numbas[i]);
-	}
-	if(numTrack !== highNum){
+	var numbers = $highlight.text().split('');
+	numbers.forEach(function(number) {
+		number = parseInt(number)
+		highlightNum += number
+	})
+
+	if(numTrack !== highlightNum){
 		alert('WRONG ANSWER MF!!!')
 	}
 
-	if($('.circle').hasClass('dead')){
-		console.log('winner detect');
+	if($('.circle').hasClass('dead').length === 8 && highlightNum === numTrack){
+		alert('YOU ARE THE WINNER!');
 	}
 
-	if(numTrack === highNum){
-		$('.highlight').addClass('dead');
-		$('.highlight').removeClass('highlight');
+	if(reroller === 0 && numTrack !== highlightNum) {
+		alert('You Lose!')
+	}
+
+	if(numTrack === highlightNum){
+		$highlight.addClass('dead');
+		$highlight.removeClass('highlight');
 		$('.space-invader').remove();
 		randomInvs();
 	}
 }
 
 
-
-
-
-
-
-
-	

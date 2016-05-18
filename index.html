@@ -2,22 +2,21 @@
 <html>
 <head>
 	<title>Add Game</title>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
 	<script src="main.js"></script>
 </head>
-<body class="image">
-<h1>Add Games</h1>
-<h2>LETS SEE IF YOU BEAT ME!</h2>
-<h3 id='rr'></h3>
+<body class="image container">
+<h1 class='text'>Add Games</h1>
+<h2 class='text'>LETS SEE IF YOU CAN BEAT ME!</h2>
+<p class='text'>The objective of this game is to add together the numbers inside of the circle with the numbers of invaders. If the number is correct, the numbers used can no longer be used. You have 3 rerolls as well to try and use all the numbers in the circle and if you do, you win! If you use all your rerolls and your numbers you have dont match the number of invaders, you lose!</p>
+<h3 id='rerollCount' class='text'></h3>
 
 <div id='invaderContainer'>
 </div>
 <div id='buttons'>
-	<button id='start'>Start</button>
-	<button id='restart'>Restart</button>
-	<button id='submit'>Submit</button>
-	<button id='reroll'>Reroll</button>
+	<button id='start' class='btn'>Start</button>
 </div>
 <div id="numberContainer">
 	<div class="circle">1</div>

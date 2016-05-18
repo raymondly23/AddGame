@@ -1,23 +1,26 @@
-body{text-align: center;
-    }
-h1,h2,h3{color: white}
+body {
+        text-align: center;
+     }
 
-#numberContainer{ border: 2px solid black;
-                display: -webkit-inline-box;
-                float: center;
+.text {
+        color: white
+      }
+
+#numberContainer{ 
+    display: -webkit-inline-box;
     }
 
-.image{background-image: url(http://www.howtogeek.com/wp-content/uploads/2011/07/spaceinvaderswallpapercollection05.jpg); 
+.image{
+    background-image: url(http://www.thefactsite.com/wp-content/uploads/2014/11/space-invaders-we-come-in-peace.jpg); 
     background-size: 100%;
     }
 
-.circle {text-align: center;
+.circle {
+    text-align: center;
     font-size: 50px;
     width: 100px;
     height: 100px;
     background: #3333FF;
-    -moz-border-radius: 50px;
-    -webkit-border-radius: 50px;
     border-radius: 50px;
     }
 
@@ -32,7 +35,7 @@ h1,h2,h3{color: white}
 
 .space-invader{
 	display: inline-block;
-  box-shadow:
+    box-shadow:
     0 0 0 1em orange,
     0 1em 0 1em orange,
     -2.5em 1.5em 0 .5em orange,
